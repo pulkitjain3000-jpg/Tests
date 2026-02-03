@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nice Try 😏</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    .container {
+      position: relative;
+      width: 600px;
+      height: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      position: absolute;
+      border-radius: 6px;
+      border: none;
+    }
+
+    #runaway {
+      left: 100px;
+      top: 180px;
+      background-color: #ef4444;
+      color: white;
+    }
+
+    #safe {
+      right: 100px;
+      top: 180px;
+      background-color: #22c55e;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Result screen */
+    #result {
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #result img {
+      width: 300px;
+      margin: 20px;
+      border-radius: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 id="question">Priyesha... Who is your bestiee?? 👀</h2>
+
+    <button id="runaway">There are 3-4 people</button>
+    <button id="safe">Pulkit</button>
+
+    <div id="result">
+      <h1>🫶 Thanks Yar! 🫶</h1>
+      
+
+      <!-- GIFs / Images -->
+      <img src="https://res.cloudinary.com/dhwrhdus7/image/upload/v1770112998/WhatsApp_Image_2026-02-03_at_3.17.43_PM_ftnjxg.jpg">
+      <audio id="winSound" preload="auto">
+	<source src="https://raw.githubusercontent.com/pulkitjain3000-jpg/Tests/main/vaaroon-mirzapur-320-kbps_6IEhFaeu.mp3" type="audio/mpeg">
+</audio>
+    </div>
+  </div>
+
+  <script>
+    const runawayBtn = document.getElementById("runaway");
+    const safeBtn = document.getElementById("safe");
+    const container = document.querySelector(".container");
+    const result = document.getElementById("result");
+    const question = document.getElementById("question");
+    const winSound = document.getElementById("winSound");
+
+    runawayBtn.addEventListener("mouseover", () => {
+      const maxX = container.clientWidth - runawayBtn.offsetWidth;
+      const maxY = container.clientHeight - runawayBtn.offsetHeight;
+
+      runawayBtn.style.left = Math.random() * maxX + "px";
+      runawayBtn.style.top = Math.random() * maxY + "px";
+    });
+
+    safeBtn.addEventListener("click", () => {
+      runawayBtn.style.display = "none";
+      safeBtn.style.display = "none";
+      question.style.display = "none";
+
+      result.style.display = "block";
+
+      winSound.currentTime = 0;
+      winSound.play();
+    });
+  </script>
+
+</body>
+</html>
